@@ -22,6 +22,15 @@
   color: #61dafb;
 }
 
+.linkPage{
+  height: 30px;
+  line-height: 30px;
+}
+.linkPage a{
+  display: inline-block;
+  margin: 0 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
