@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import '../../App.css';
 
+import { withRouter } from "react-router-dom";
+
 class About extends Component {
   render() {
     return (
@@ -24,5 +26,5 @@ class About extends Component {
     )
   }
 }
-export default About
+export default withRouter(About)
 

@@ -54,7 +54,13 @@ class Home extends Component {
   }
 
   handleClick(item) {
-    console.log(item.id)
+    console.log(item.id, this.props)
+    this.props.history.push({
+      pathname: '/about',
+      query: {
+        id: item.id
+      }
+    })
   }
 
   render() {

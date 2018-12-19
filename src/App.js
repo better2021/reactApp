@@ -14,15 +14,11 @@ class App extends Component {
   }
   state = {}
 
+
+
   handleItemClick = (e, { name }) => this.setState({ activeItem: name }, () => {
     console.log(this.state, name, e);
     console.log(this.props)
-    // this.props.history.push({
-    //   pathname: '/home',
-    //   state: {
-    //     id: 3
-    //   }
-    // })
   })
 
   render() {
