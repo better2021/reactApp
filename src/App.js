@@ -9,6 +9,8 @@ import Home from './pages/home';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.handleItemClick.bind(this)
+    console.log(props)
   }
   state = {}
 
@@ -38,7 +40,7 @@ class App extends Component {
               name='features'
               as="div"
               active={activeItem === 'features'}
-              onClick={this.handleItemClick.bind(this)}
+              onClick={this.handleItemClick}
             >
               <Link to="/about">about</Link>
             </Menu.Item>
@@ -47,12 +49,12 @@ class App extends Component {
               as="div"
               name='testimonials'
               active={activeItem === 'testimonials'}
-              onClick={this.handleItemClick.bind(this)}
+              onClick={this.handleItemClick}
             >
               <Link to="/home">home</Link>
             </Menu.Item>
 
-            <Menu.Item name='sign-in' active={activeItem === 'sign-in'} onClick={this.handleItemClick.bind(this)}>
+            <Menu.Item name='sign-in' active={activeItem === 'sign-in'} onClick={this.handleItemClick}>
               Sign-in
         </Menu.Item>
           </Menu>
