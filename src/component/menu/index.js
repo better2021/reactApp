@@ -12,7 +12,7 @@ class MenuLsit extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name }, () => {
     console.log(this.state, name);
-    console.log(this.props)
+    //console.log(this.props)
     this.props.history.push({ pathname: name === 'home' ? '/' : `/${name}` })
   })
 
@@ -46,4 +46,4 @@ class MenuLsit extends Component {
   }
 }
 
-export default withRouter(MenuLsit) 
+export default withRouter(MenuLsit)

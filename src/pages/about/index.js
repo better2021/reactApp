@@ -4,11 +4,8 @@ import logo from '../../logo.svg';
 import '../../App.css';
 
 class About extends Component {
-  constructor(props) {
-    super(props);
-  }
   handClick() {
-    console.log(this.props);
+    //console.log(this.props);
     this.props.history.push({ pathname: '/video', query: { name: 'hello world', id: 5 } })
   }
   render() {
@@ -27,4 +24,3 @@ class About extends Component {
   }
 }
 export default About
-
