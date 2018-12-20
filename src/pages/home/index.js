@@ -27,6 +27,9 @@ const ButtonExampleLabeledBasic = ({ count }) => (
 )
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     dataSource: []
   }

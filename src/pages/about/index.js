@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import logo from '../../logo.svg';
 import '../../App.css';
 
-import { withRouter } from "react-router-dom";
-
 class About extends Component {
+  constructor(props) {
+    super(props);
+  }
+  handClick() {
+    console.log(this.props);
+    this.props.history.push({ pathname: '/video', query: { name: 'hello world', id: 5 } })
+  }
   render() {
     return (
       <div className="App">
@@ -13,18 +19,12 @@ class About extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <p onClick={this.handClick.bind(this)}>跳转到video页面</p>
+          <Link to="/">home</Link>
         </header>
       </div>
     )
   }
 }
-export default withRouter(About)
+export default About
 
