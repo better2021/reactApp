@@ -40,6 +40,8 @@ class MenuLsit extends Component {
           </Menu.Item>
           <Menu.Item name='video' active={activeItem === 'video'} onClick={this.handleItemClick}>
           </Menu.Item>
+          <Menu.Item name='music' active={activeItem === 'music'} onClick={this.handleItemClick}>
+          </Menu.Item>
         </Menu>
       </div>
     )
