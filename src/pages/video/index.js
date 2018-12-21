@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { Card, Feed } from 'semantic-ui-react'
 
-const CardExampleContentBlock = ({time}) => (
+const CardExampleContentBlock = ({ time }) => (
   <Card>
     <Card.Content>
       <Card.Header>Recent Activity</Card.Header>
@@ -53,8 +53,8 @@ class videoList extends Component {
   render() {
     return (
       <div>
-      <p>{JSON.stringify(this.props)}</p>
-      <CardExampleContentBlock time={new Date().toLocaleString()} />
+        <p>{JSON.stringify(this.props)}</p>
+        <CardExampleContentBlock time={new Date().toLocaleString()} />
       </div>
     )
   }

@@ -28,7 +28,7 @@ const ButtonExampleLabeledBasic = ({ count }) => (
 )
 
 
-const DividerExampleVerticalForm = ({login,text}) => (
+const DividerExampleVerticalForm = ({ login, text }) => (
   <Segment placeholder>
     <Grid columns={2} relaxed='very' stackable>
       <Grid.Column>
@@ -36,7 +36,7 @@ const DividerExampleVerticalForm = ({login,text}) => (
           <Form.Input icon='user' iconPosition='left' label='Username' placeholder='Username' />
           <Form.Input icon='lock' iconPosition='left' label='Password' type='password' />
 
-          <Button content='Login' primary onClick={login}/>
+          <Button content='Login' primary onClick={login} />
         </Form>
       </Grid.Column>
 
@@ -89,21 +89,21 @@ class Home extends Component {
   }
 
   //登录按钮
-  loginClick=()=>{
+  loginClick = () => {
     //console.log(this.props)
-    this.props.history.push({pathname:'/video',params:{name:'登录'}})
+    this.props.history.push({ pathname: '/video', params: { name: '登录' } })
   }
 
-  jump(){
-    console.log(this.props,'666')
+  jump = () => {
+    console.log(this.props, '666')
   }
 
   render() {
     return (
       <div className="homeBox">
-      <p onClick={()=>{this.jump()}}>12313131</p>
+        <p onClick={() => { this.jump() }}>12313131</p>
         <ButtonExampleLabeledBasic count={this.state.dataSource.length} />
-        <DividerExampleVerticalForm login={this.loginClick} text="或者"/>
+        <DividerExampleVerticalForm login={this.loginClick} text="或者" />
         <ul>
           {
             this.state.dataSource.map((item, index) => {
