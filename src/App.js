@@ -1,6 +1,7 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'
+import './App.css';
 
 //按需加载组件（也称懒加载）
 const MenuLsit = lazy(() => import("./component/menu"));
