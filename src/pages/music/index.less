@@ -1,0 +1,60 @@
+.musicList{
+  width: 1000px;
+  height: 90vh;
+  margin: 20px auto;
+  ul{
+    height: 60vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content:space-around;
+    li{
+      width: 150px;
+      height: 150px;
+      margin: 10px;
+      border-radius:100%; 
+      overflow:hidden;
+      box-shadow:0 0 3px #666666;
+      .musicBox{
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+          width: 100%;
+        }
+      }
+    }
+    li.rotateGo{
+      animation: myfirst 10s infinite;
+      animation-timing-function: linear;
+    }
+  }
+  .audiobox,.searchBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .hotList{
+      margin: 10px 0;
+      span{
+        display: inline-block;
+        margin: 0 5px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        padding: 0 5px;
+        background: rgb(0, 125, 120);
+        border-radius:3px;
+        color: #ffffff;
+        font-size:12px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@keyframes myfirst
+{
+0%   {transform: rotate(0deg);}
+100% {transform: rotate(360deg);}
+}

@@ -91,14 +91,9 @@ class Home extends Component {
     this.props.history.push({ pathname: '/video', params: { name: '登录' } })
   }
 
-  jump = () => {
-    console.log(this.props, '666')
-  }
-
   render() {
     return (
       <div className="homeBox">
-        <p onClick={() => { this.jump() }}>12313131</p>
         <ButtonExampleLabeledBasic count={this.state.dataSource.length} />
         <DividerExampleVerticalForm login={this.loginClick} text="或者" />
         <ul>
