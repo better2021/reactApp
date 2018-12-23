@@ -65,6 +65,7 @@ class Music extends Component {
 
   handleClick(item, index) {
     //console.log(item, index)
+    console.log(item.lrc)
     sessionStorage.setItem('musicIndex', index)
     this.setState({
       currentIndex: index
@@ -168,14 +169,23 @@ class Music extends Component {
         {
           this.state.dataSorce.map((item, index) => {
             return (
-              <li className={this.state.currentIndex === index ? 'rotateGo' : ""} key={index} onClick={() => this.handleClick(item, index)}>
-                <div className="musicBox"><img src={item.pic} alt={item.title} /><IconExampleDisabled /></div>
+              <li key={index} onClick={() => this.handleClick(item, index)}>
+                <div className={this.state.currentIndex === index ? 'rotateGo musicBox' : "musicBox"}>
+                  <img src={item.pic} alt={item.title} />
+                  {
+                    this.state.currentIndex === index ? "" : <IconExampleDisabled />
+                  }
+                </div>
+                <div className="musicInfo">
+                  <p>作曲：{item.author}</p>
+                  <p>{item.title}</p>
+                </div>
               </li>
             )
           })
         }
       </ul>
-      <div>
+      <div style={{ marginTop: '30px' }}>
         {
           this.state.musicUrl && <div className="audiobox"><audio src={this.state.musicUrl} preload="auto" autoPlay controls loop ref={c => this.audioEle = c}></audio></div>
         }
