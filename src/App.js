@@ -11,13 +11,6 @@ const Video = lazy(() => import('./pages/video'))
 const Music = lazy(() => import('./pages/music'))
 const NotFind = lazy(() => import('./component/notFind'))
 
-// import MenuLsit from './component/menu'
-// import Home from './pages/home'
-// import About from './pages/about'
-// import Video from './pages/video'
-// import Music from './pages/music'
-// import NotFind from './component/notFind'
-
 class App extends Component {
   //我们必须在等待加载时显示一些后备内容 - 例如加载指示符,这是使用Suspense 组件完成的。
   render() {
