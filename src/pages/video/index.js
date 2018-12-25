@@ -1,6 +1,11 @@
 
 import React, { Component } from 'react'
-import { Card, Feed } from 'semantic-ui-react'
+import { Card, Feed, Icon, Input } from 'semantic-ui-react'
+import Weather from '../../component/weather'
+
+const InputExampleIconElement = ({ text, change, search }) => (
+  <Input value={text} onChange={change} icon={<Icon name='search' inverted circular link onClick={search} />} placeholder='Search...' style={{ width: '280px' }} />
+)
 
 const CardExampleContentBlock = ({ time }) => (
   <Card>
@@ -44,17 +49,31 @@ const CardExampleContentBlock = ({ time }) => (
   </Card>
 )
 
+
 class videoList extends Component {
-  constructor(props) {
-    super(props)
-    console.log(props.location)
+  state = {
+    txt: ""
+  }
+
+  onChange = (event) => {
+    this.setState({
+      txt: event.target.value
+    })
+  }
+
+  //搜索
+  handleSearch = () => {
+    let area = this.state.txt
+    this.weather.getData(area)
   }
 
   render() {
     return (
       <div>
         <p>{JSON.stringify(this.props)}</p>
+        <Weather content={this.state.txt} ref={c => this.weather = c} />
         <CardExampleContentBlock time={new Date().toLocaleString()} />
+        <InputExampleIconElement text={this.state.txt} change={this.onChange} search={this.handleSearch} />
       </div>
     )
   }

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import Weather from '../../component/weather'
 import logo from '../../logo.svg';
+import './index.less'
 
 const Welcome = ({ text, obj }) => {
   console.log(obj)
   return (
     <div>
-      <p><span style={{ color: 'green', textShadow: '3px 3px #000' }}>{obj.time}</span><span>{obj.name}</span></p>
+      <p><span style={{ color: '#ffefc2', textShadow: '3px 3px #000', fontSize: '20px' }}>{obj.time}</span><span>{obj.name}</span></p>
       <h2>hello react!<span>{text}</span></h2>
     </div>
   )
@@ -44,9 +46,10 @@ class About extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Welcome obj={{ time: this.state.time, name: 'feiyu' }} text="哈哈哈" />
-          <p onClick={this.handClick.bind(this)}>跳转到video页面</p>
+          <p className="white" onClick={this.handClick.bind(this)}>跳转到video页面</p>
           <Link to="/">home</Link>
-          <p>{this.state.txt}</p>
+          <p className="white">{this.state.txt}</p>
+          <Weather />
         </header>
       </div>
     )
