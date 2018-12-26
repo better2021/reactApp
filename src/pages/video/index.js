@@ -51,6 +51,11 @@ const CardExampleContentBlock = ({ time }) => (
 
 
 class videoList extends Component {
+  constructor(props) {
+    super(props)
+    this.weather = React.createRef()
+  }
+
   state = {
     txt: ""
   }
@@ -64,14 +69,15 @@ class videoList extends Component {
   //搜索
   handleSearch = () => {
     let area = this.state.txt
-    this.weather.getData(area)
+    console.log(this.weather.current)
+    this.weather.current.getData(area)
   }
 
   render() {
     return (
       <div>
         <p>{JSON.stringify(this.props)}</p>
-        <Weather content={this.state.txt} ref={c => this.weather = c} />
+        <Weather content={this.state.txt} ref={this.weather} />
         <CardExampleContentBlock time={new Date().toLocaleString()} />
         <InputExampleIconElement text={this.state.txt} change={this.onChange} search={this.handleSearch} />
       </div>

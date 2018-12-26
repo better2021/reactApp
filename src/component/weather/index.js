@@ -5,6 +5,7 @@ import './index.less'
 class Weather extends Component {
 
   state = {
+    city: '',
     tip: '',
     yesterday: {},
     forecast: []
@@ -16,7 +17,7 @@ class Weather extends Component {
 
   //获取各地天气
   async getData(area = '武汉') {
-    console.log(this.props)
+    console.log(this.props.content, '-----')
     const res = await axios({
       url: 'https://www.apiopen.top/weatherApi',
       method: 'GET',
@@ -25,6 +26,7 @@ class Weather extends Component {
     if (res.status === 200) {
       console.log(res.data);
       this.setState({
+        city: res.data.data.city,
         tip: res.data.data.ganmao,
         yesterday: res.data.data.yesterday,
         forecast: res.data.data.forecast
@@ -38,16 +40,9 @@ class Weather extends Component {
 
   render() {
     return (<div className="weatherBox">
-      <div className="weather">
-        <p>日期：{this.state.yesterday.date}</p>
-        <p>
-          <span className="left">{this.state.yesterday.high}</span>
-          <span className="right">{this.state.yesterday.low}</span>
-        </p>
-        <p>
-          <span>{this.state.yesterday.type}</span>
-          <span>{this.state.yesterday.fx}</span>
-        </p>
+      <div className="tips">
+        <h3>地区：{this.state.city}</h3>
+        <p>温馨提示：{this.state.tip}</p>
       </div>
       <ul>
         {
