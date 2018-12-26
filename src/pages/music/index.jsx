@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Icon, Input } from 'semantic-ui-react'
 import axios from 'axios'
 import './index.less'
-import { relative } from 'upath';
+let Spinner = require('react-spinkit');
 
 const IconUp = ({ prevMusic }) => <Icon name='fast backward' className="iconBtn" style={{ left: '50px' }} onClick={prevMusic} />
 const IconDown = ({ nextMusic }) => <Icon name='fast forward' className="iconBtn" style={{ right: '50px' }} onClick={nextMusic} />
@@ -27,7 +27,8 @@ class Music extends Component {
       dataSorce: [],
       musicUrl: '',
       text: '',
-      hotSearch: []
+      hotSearch: [],
+      loading: false
     }
   }
 
@@ -116,6 +117,9 @@ class Music extends Component {
 
   //获取音乐列表
   getMusicList = async (title = '喜欢') => {
+    this.setState({
+      loading: true
+    })
     const res = await axios({
       url: 'https://api.apiopen.top/searchMusic',
       method: 'GET',
@@ -136,6 +140,12 @@ class Music extends Component {
     } else {
       console.log(res.data.message)
     }
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    }, 1000)
+
   }
 
   //获取单个音乐文件url链接地址
@@ -197,6 +207,12 @@ class Music extends Component {
 
   render() {
     return (<div className="musicList">
+      {
+        this.state.loading &&
+        <div className="loadingBox">
+          <Spinner name="line-scale" color="red" />
+        </div>
+      }
       <div className="searchBox">
         <InputExampleIconElement text={this.state.text} change={this.handleChange} search={this.handleSearch} />
         <HotList list={this.state.hotSearch} hotClick={this.playhotMusic} />
@@ -206,10 +222,10 @@ class Music extends Component {
           this.state.dataSorce.map((item, index) => {
             return (
               <li key={index} onClick={() => this.handleClick(item, index)}>
-                <div className={this.state.currentIndex === index ? 'rotateGo musicBox' : "musicBox"}>
-                  <img src={item.pic} alt={item.title} />
+                <div className="musicBox">
+                  <img src={item.pic} alt={item.title} className={this.state.currentIndex === index ? 'rotateGo' : ''} />
                   {
-                    this.state.currentIndex === index ? "" : <IconExampleDisabled />
+                    this.state.currentIndex === index ? (<div className="musicLoading"><Spinner name="line-scale-pulse-out" color="orange" /></div>) : (<IconExampleDisabled />)
                   }
                 </div>
                 <div className="musicInfo">

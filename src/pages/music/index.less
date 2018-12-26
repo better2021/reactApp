@@ -25,10 +25,18 @@
         img{
           width: 100%;
         }
-      }
-      .rotateGo{
-        animation: myfirst 10s infinite;
-        animation-timing-function: linear;
+        .musicLoading{
+          position: absolute;
+          z-index: 99;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .rotateGo{
+          animation: myfirst 10s infinite;
+          animation-timing-function: linear;
+          filter: blur(2px);
+        }
       }
       .musicInfo{
         display: flex;
@@ -83,6 +91,18 @@
       font-size:18px;
       cursor: pointer;
     }
+  }
+  .loadingBox{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255,255,255,0.6);
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
