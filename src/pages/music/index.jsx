@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 import { Icon, Input } from 'semantic-ui-react'
 import axios from 'axios'
 import './index.less'
+import { relative } from 'upath';
 
+const IconUp = ({ prevMusic }) => <Icon name='fast backward' className="iconBtn" style={{ left: '50px' }} onClick={prevMusic} />
+const IconDown = ({ nextMusic }) => <Icon name='fast forward' className="iconBtn" style={{ right: '50px' }} onClick={nextMusic} />
 const IconExampleDisabled = () => <Icon disabled name='play' style={{ position: 'absolute', transform: 'translateY(10px)', fontSize: '36px', color: '#007d78' }} />
 const HotList = ({ list, hotClick }) => (
   <div className="hotList">{
@@ -69,8 +72,9 @@ class Music extends Component {
     sessionStorage.setItem('musicIndex', index)
     this.setState({
       currentIndex: index
+    }, () => {
+      this.getCurrentMusic(item.songid)
     })
-    this.getCurrentMusic(item.songid)
   }
 
   handleChange = (event) => {
@@ -136,6 +140,7 @@ class Music extends Component {
 
   //获取单个音乐文件url链接地址
   async getCurrentMusic(songId) {
+    console.log(this.state.currentIndex)
     const res = await axios({
       url: 'https://api.imjad.cn/cloudmusic/',
       method: 'get',
@@ -156,6 +161,37 @@ class Music extends Component {
       }
     } else {
       console.log(res.statusText)
+    }
+  }
+
+  //上一曲
+  prevClick = () => {
+    if (this.state.currentIndex > 0) {
+      this.setState((prevState) => ({
+        currentIndex: prevState.currentIndex - 1
+      }), () => {
+        const index = this.state.currentIndex
+        const data = this.state.dataSorce
+        const songId = data[index].songid
+        this.getCurrentMusic(songId)
+      })
+    } else {
+      return false
+    }
+  }
+  //下一曲
+  nextClick = () => {
+    if (this.state.currentIndex < this.state.dataSorce.length - 1) {
+      this.setState((prevState) => ({
+        currentIndex: prevState.currentIndex + 1
+      }), () => {
+        const index = this.state.currentIndex
+        const data = this.state.dataSorce
+        const songId = data[index].songid
+        this.getCurrentMusic(songId)
+      })
+    } else {
+      return false
     }
   }
 
@@ -187,7 +223,12 @@ class Music extends Component {
       </ul>
       <div style={{ marginTop: '30px' }}>
         {
-          this.state.musicUrl && <div className="audiobox"><audio src={this.state.musicUrl} preload="auto" autoPlay controls loop ref={c => this.audioEle = c}></audio></div>
+          this.state.musicUrl &&
+          <div className="audiobox" style={{ position: 'relative', width: '500px', margin: '0 auto' }}>
+            {this.state.currentIndex !== 0 && <IconUp prevMusic={this.prevClick} />}
+            <audio src={this.state.musicUrl} preload="auto" autoPlay controls loop ref={c => this.audioEle = c}></audio>
+            {this.state.currentIndex !== this.state.dataSorce.length - 1 && <IconDown nextMusic={this.nextClick} />}
+          </div>
         }
       </div>
     </div>)
