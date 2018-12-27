@@ -403,7 +403,7 @@ module.exports = {
               'sass-loader'
             ),
           },
-          //添加less的配置
+          //添加less的配置(by feiyu)
           {
             test: /\.less$/,
             use: [
@@ -412,6 +412,8 @@ module.exports = {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
+                  modules: true,  //在less中开启css module
+                  localIndetName: "[name]__[local]__[hash:base64:5]" //css module编译后的css名
                 },
               },
               {

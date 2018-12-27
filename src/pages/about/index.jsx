@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Weather from '../../component/weather'
 import logo from '../../logo.svg';
-import './index.less'
+import styles from './index.less'
 
 const Welcome = ({ text, obj }) => {
   console.log(obj)
@@ -42,13 +42,13 @@ class About extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className={styles.App}>
+        <header className={styles.AppHeader}>
+          <img src={logo} className={styles.AppLogo} alt="logo" />
           <Welcome obj={{ time: this.state.time, name: 'feiyu' }} text="哈哈哈" />
-          <p className="white" onClick={this.handClick.bind(this)}>跳转到video页面</p>
+          <p className={styles.white} onClick={this.handClick.bind(this)}>跳转到video页面</p>
           <Link to="/">home</Link>
-          <p className="white">{this.state.txt}</p>
+          <p className={styles.white}>{this.state.txt}</p>
           <Weather />
         </header>
       </div>

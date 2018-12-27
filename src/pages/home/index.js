@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Icon, Label } from 'semantic-ui-react'
 import { Divider, Form, Grid, Segment } from 'semantic-ui-react'
 import axios from 'axios';
-import './index.less'
+import styles from './index.less'
 
 const ButtonExampleLabeledBasic = ({ count }) => (
   <div>
@@ -93,7 +93,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="homeBox">
+      <div className={styles.homeBox}>
         <ButtonExampleLabeledBasic count={this.state.dataSource.length} />
         <DividerExampleVerticalForm login={this.loginClick} text="或者" />
         <ul>

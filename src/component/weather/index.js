@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import './index.less'
+import styles from './index.less'
 
 class Weather extends Component {
 
@@ -39,8 +39,8 @@ class Weather extends Component {
   }
 
   render() {
-    return (<div className="weatherBox">
-      <div className="tips">
+    return (<div className={styles.weatherBox}>
+      <div className={styles.tips}>
         <h3>地区：{this.state.city}</h3>
         <p>温馨提示：{this.state.tip}</p>
       </div>
@@ -48,11 +48,11 @@ class Weather extends Component {
         {
           this.state.forecast.map((item, index) => {
             return (
-              <div className="weather" key={index}>
+              <div className={styles.weather} key={index}>
                 <p>日期：{item.date}</p>
                 <p>
-                  <span className="left">{item.high}</span>
-                  <span className="right">{item.low}</span>
+                  <span className={styles.left}>{item.high}</span>
+                  <span className={styles.right}>{item.low}</span>
                 </p>
                 <p>
                   <span>{item.type}</span>

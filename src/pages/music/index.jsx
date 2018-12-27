@@ -2,14 +2,14 @@
 import React, { Component } from 'react'
 import { Icon, Input } from 'semantic-ui-react'
 import axios from 'axios'
-import './index.less'
+import styles from './index.less'
 let Spinner = require('react-spinkit');
 
-const IconUp = ({ prevMusic }) => <Icon name='fast backward' className="iconBtn" style={{ left: '50px' }} onClick={prevMusic} />
-const IconDown = ({ nextMusic }) => <Icon name='fast forward' className="iconBtn" style={{ right: '50px' }} onClick={nextMusic} />
+const IconUp = ({ prevMusic }) => <Icon name='fast backward' className={styles.iconBtn} style={{ left: '50px' }} onClick={prevMusic} />
+const IconDown = ({ nextMusic }) => <Icon name='fast forward' className={styles.iconBtn} style={{ right: '50px' }} onClick={nextMusic} />
 const IconExampleDisabled = () => <Icon disabled name='play' style={{ position: 'absolute', transform: 'translateY(10px)', fontSize: '36px', color: '#007d78' }} />
 const HotList = ({ list, hotClick }) => (
-  <div className="hotList">{
+  <div className={styles.hotList}>{
     list.map((item, index) => {
       return (<span key={index} onClick={hotClick}>{item}</span>)
     })
@@ -206,14 +206,14 @@ class Music extends Component {
   }
 
   render() {
-    return (<div className="musicList">
+    return (<div className={styles.musicList}>
       {
         this.state.loading &&
-        <div className="loadingBox">
+        <div className={styles.loadingBox}>
           <Spinner name="line-scale" color="red" />
         </div>
       }
-      <div className="searchBox">
+      <div className={styles.searchBox}>
         <InputExampleIconElement text={this.state.text} change={this.handleChange} search={this.handleSearch} />
         <HotList list={this.state.hotSearch} hotClick={this.playhotMusic} />
       </div>
@@ -222,13 +222,13 @@ class Music extends Component {
           this.state.dataSorce.map((item, index) => {
             return (
               <li key={index} onClick={() => this.handleClick(item, index)}>
-                <div className="musicBox">
-                  <img src={item.pic} alt={item.title} className={this.state.currentIndex === index ? 'rotateGo' : ''} />
+                <div className={styles.musicBox}>
+                  <img src={item.pic} alt={item.title} className={this.state.currentIndex === index ? styles.rotateGo : ''} />
                   {
-                    this.state.currentIndex === index ? (<div className="musicLoading"><Spinner name="line-scale-pulse-out" color="orange" /></div>) : (<IconExampleDisabled />)
+                    this.state.currentIndex === index ? (<div className={styles.musicLoading}><Spinner name="line-scale-pulse-out" color="orange" /></div>) : (<IconExampleDisabled />)
                   }
                 </div>
-                <div className="musicInfo">
+                <div className={styles.musicInfo}>
                   <p>作曲：{item.author}</p>
                   <p>{item.title}</p>
                 </div>
@@ -240,7 +240,7 @@ class Music extends Component {
       <div style={{ marginTop: '30px' }}>
         {
           this.state.musicUrl &&
-          <div className="audiobox" style={{ position: 'relative', width: '500px', margin: '0 auto' }}>
+          <div className={styles.audiobox} style={{ position: 'relative', width: '500px', margin: '0 auto' }}>
             {this.state.currentIndex !== 0 && <IconUp prevMusic={this.prevClick} />}
             <audio src={this.state.musicUrl} preload="auto" autoPlay controls loop ref={c => this.audioEle = c}></audio>
             {this.state.currentIndex !== this.state.dataSorce.length - 1 && <IconDown nextMusic={this.nextClick} />}
