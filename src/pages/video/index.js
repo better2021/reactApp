@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Card, Feed, Icon, Input } from 'semantic-ui-react'
 import Weather from '../../component/weather'
 
+let Spinner = require('react-spinkit');
 const InputExampleIconElement = ({ text, change, search }) => (
   <Input value={text} onChange={change} icon={<Icon name='search' inverted circular link onClick={search} />} placeholder='Search...' style={{ width: '280px' }} />
 )
@@ -80,6 +81,7 @@ class videoList extends Component {
         <Weather content={this.state.txt} ref={this.weather} />
         <CardExampleContentBlock time={new Date().toLocaleString()} />
         <InputExampleIconElement text={this.state.txt} change={this.onChange} search={this.handleSearch} />
+        <div style={{ marginLeft: '30px' }}><Spinner name="pacman" color="coral" /></div>
       </div>
     )
   }
