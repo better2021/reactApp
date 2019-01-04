@@ -3,16 +3,16 @@ import React, { Component } from 'react'
 import { Icon, Input } from 'semantic-ui-react'
 import axios from 'axios'
 import styles from './index.less'
-let Spinner = require('react-spinkit');
+        let Spinner = require('react-spinkit');
 
-const IconUp = ({ prevMusic }) => <Icon name='fast backward' className={styles.iconBtn} style={{ left: '50px' }} onClick={prevMusic} />
+            const IconUp = ({ prevMusic }) => <Icon name='fast backward' className={styles.iconBtn} style={{ left: '50px' }} onClick={prevMusic} />
 const IconDown = ({ nextMusic }) => <Icon name='fast forward' className={styles.iconBtn} style={{ right: '50px' }} onClick={nextMusic} />
 const IconExampleDisabled = () => <Icon disabled name='play' style={{ position: 'absolute', transform: 'translateY(10px)', fontSize: '36px', color: '#007d78' }} />
 const HotList = ({ list, hotClick }) => (
   <div className={styles.hotList}>{
     list.map((item, index) => {
-      return (<span key={index} onClick={hotClick}>{item}</span>)
-    })
+            return (<span key={index} onClick={hotClick}>{item}</span>)
+        })
   }</div>
 )
 const InputExampleIconElement = ({ text, change, search }) => (
