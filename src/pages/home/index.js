@@ -4,7 +4,12 @@ import { Divider, Form, Grid, Segment } from 'semantic-ui-react';
 import axios from 'axios';
 import styles from './index.less';
 
-const ButtonExampleLabeledBasic = ({ count }) => (
+const ButtonExampleLabeledBasic = ({
+  count,
+  status,
+  curColor,
+  changeColor
+}) => (
   <div>
     <Button as="div" labelPosition="right">
       <Button color="red">
@@ -23,6 +28,9 @@ const ButtonExampleLabeledBasic = ({ count }) => (
       <Label as="a" basic color="blue" pointing="left">
         {count}
       </Label>
+    </Button>
+    <Button color={curColor} onClick={changeColor}>
+      {status ? ' 点赞' : '取消'}
     </Button>
   </div>
 );
@@ -47,7 +55,9 @@ const DividerExampleVerticalForm = ({ login, text }) => (
 
 class Home extends Component {
   state = {
-    dataSource: []
+    dataSource: [],
+    status: false,
+    curColor: 'red'
   };
 
   componentDidMount() {
@@ -88,11 +98,23 @@ class Home extends Component {
     this.props.history.push({ pathname: '/video', params: { name: '登录' } });
   };
 
+  changeStatus = () => {
+    this.setState({
+      status: !this.state.status,
+      curColor: this.state.curColor === 'red' ? 'blue' : 'red'
+    });
+  };
+
   render() {
     return (
       <div className={styles.homeBox}>
-        <ButtonExampleLabeledBasic count={this.state.dataSource.length} />
-        <DividerExampleVerticalForm login={this.loginClick} text="或者" />
+        <ButtonExampleLabeledBasic
+          count={this.state.dataSource.length}
+          status={this.state.status}
+          curColor={this.state.curColor}
+          changeColor={this.changeStatus}
+        />
+        <DividerExampleVerticalForm login={this.loginClick} text="或0者" />
         <ul>
           {this.state.dataSource.map((item, index) => {
             return (

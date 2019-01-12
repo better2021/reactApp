@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import { Card, Feed, Icon, Input } from 'semantic-ui-react';
 import Weather from '../../component/weather';
 
+const url = require('url'); //属于nodejs的内置方法
+const path = require('path'); //属于nodejs的内置方法
+const crypto = require('crypto'); //属于nodejs的内置方法
+const hash = crypto.createHash('md5');
+
+// 可任意多次调用update():
+hash.update('hello');
+//hash.update('node');
+//console.log(hash.update('hello'));
+console.log(hash.digest('hex')); //生成md5加密后的字符
+
 let Spinner = require('react-spinkit');
 const InputExampleIconElement = ({ text, change, search }) => (
   <Input
@@ -71,6 +82,14 @@ class videoList extends Component {
     console.log(this.weather.current);
     this.weather.current.getData(area);
   };
+
+  // 生命周期相当于vue的mount
+  componentDidMount() {
+    const curUrl = window.location.href;
+    const workDir = path.resolve('.'); //解析当前目录
+    console.log(path.join(workDir, 'video', 'index.html')); //组合完整的文件路径:当前目录+'video'+'index.html':
+    console.log(url.parse(curUrl)); //通过parse()将一个字符串解析为一个Url对象
+  }
 
   render() {
     return (
