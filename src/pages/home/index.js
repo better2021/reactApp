@@ -3,6 +3,7 @@ import { Button, Icon, Label } from 'semantic-ui-react';
 import { Divider, Form, Grid, Segment } from 'semantic-ui-react';
 import axios from 'axios';
 import styles from './index.less';
+import { clock } from '../../libs/clock.js';
 
 const ButtonExampleLabeledBasic = ({
   count,
@@ -62,6 +63,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.getDate();
+    clock();
   }
 
   async getDate() {
@@ -129,6 +131,9 @@ class Home extends Component {
             );
           })}
         </ul>
+        <canvas id="canvas" style={{ width: '500px' }}>
+          当前浏览器不支持canvas，请更换浏览器后再试
+        </canvas>
       </div>
     );
   }
