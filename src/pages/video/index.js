@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Card, Feed, Icon, Input } from 'semantic-ui-react';
+import { SketchPicker } from 'react-color';
 import Weather from '../../component/weather';
+import styles from './index.less';
+import axios from 'axios';
 
 const url = require('url'); //属于nodejs的内置方法
 const path = require('path'); //属于nodejs的内置方法
@@ -67,7 +70,19 @@ class videoList extends Component {
   }
 
   state = {
-    txt: ''
+    txt: '',
+    displayColorPicker: false,
+    obj: {
+      fgcolor: '#ff7f50',
+      //text: '加油哟，2019遇见更好的自己！',
+      text: 'https://www.zhihu.com/',
+      size: 200,
+      logo: 'https://api.imjad.cn/qrcode/logo.png',
+      level: 'M',
+      bgcolor: '#ffffff',
+      encode: 'json'
+    },
+    url: ''
   };
 
   onChange = event => {
@@ -81,6 +96,57 @@ class videoList extends Component {
     let area = this.state.txt;
     console.log(this.weather.current);
     this.weather.current.getData(area);
+  };
+
+  handleSwitch = () => {
+    this.setState({
+      displayColorPicker: true
+    });
+  };
+
+  changeColor = color => {
+    this.setState({
+      obj: {
+        ...this.state.obj,
+        fgcolor: color.hex
+      },
+      displayColorPicker: false
+    });
+  };
+
+  changeText = event => {
+    console.log(event);
+    this.setState({
+      obj: {
+        ...this.state.obj,
+        text: event.target.value
+      }
+    });
+  };
+
+  changeSize = event => {
+    console.log(event.target.value);
+    this.setState({
+      obj: {
+        ...this.state.obj,
+        size: event.target.value
+      }
+    });
+  };
+
+  getCode = async () => {
+    let res = await axios({
+      url: 'https://api.imjad.cn/qrcode/',
+      method: 'GET',
+      params: this.state.obj
+    });
+    if (res.status !== 200) {
+      console.log(res.statusText);
+      return;
+    }
+    this.setState({
+      url: res.data.url
+    });
   };
 
   // 生命周期相当于vue的mount
@@ -104,6 +170,39 @@ class videoList extends Component {
         />
         <div style={{ marginLeft: '30px' }}>
           <Spinner name="pacman" color="coral" />
+        </div>
+        <div className={styles.colorBox}>
+          <input
+            type="text"
+            value={this.state.obj.text}
+            onChange={this.changeText}
+          />
+          <input
+            type="number"
+            value={this.state.obj.size}
+            onChange={this.changeSize}
+          />
+          {this.state.displayColorPicker ? (
+            <SketchPicker
+              onChange={this.changeColor}
+              value={this.state.obj.fgcolor}
+            />
+          ) : (
+            <span
+              className={styles.bgColor}
+              style={{ background: this.state.obj.fgcolor }}
+              onClick={this.handleSwitch}
+            />
+          )}
+          <button onClick={this.getCode}>生成二维码</button>
+          {this.state.url && (
+            <div>
+              <img src={this.state.url} alt={this.state.obj.text} />
+              <a href={this.state.url} download>
+                下载
+              </a>
+            </div>
+          )}
         </div>
       </div>
     );
