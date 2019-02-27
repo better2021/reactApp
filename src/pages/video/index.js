@@ -151,6 +151,7 @@ class videoList extends Component {
 
   // 生命周期相当于vue的mount
   componentDidMount() {
+    console.log(666)
     const curUrl = window.location.href;
     const workDir = path.resolve('.'); //解析当前目录
     console.log(path.join(workDir, 'video', 'index.html')); //组合完整的文件路径:当前目录+'video'+'index.html':

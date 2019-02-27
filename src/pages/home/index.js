@@ -36,6 +36,25 @@ const ButtonExampleLabeledBasic = ({
   </div>
 );
 
+function Clo(time) {
+  return (
+    <div>
+      <h1>hello</h1>
+      <h2>now time is: {time.data.toLocaleTimeString()}</h2>
+    </div>
+  );
+}
+
+const Hello = <Clo data={new Date()} />;
+
+function Url({ url }) {
+  return <p>地址：{url}</p>;
+}
+
+function Name(props) {
+  return <h3>名称：{props.name}</h3>;
+}
+
 const DividerExampleVerticalForm = ({ login, text }) => (
   <Segment placeholder>
     <Grid columns={2} relaxed="very" stackable>
@@ -131,6 +150,11 @@ class Home extends Component {
             );
           })}
         </ul>
+        {Hello}
+        <div>
+          <Url url="www.baidu.com" />
+          <Name name="啊哈哈的" />
+        </div>
         <canvas id="canvas" style={{ width: '500px' }}>
           当前浏览器不支持canvas，请更换浏览器后再试
         </canvas>
