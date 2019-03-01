@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { createStore } from 'redux';
 import { Button, Icon, Label } from 'semantic-ui-react';
 import { Divider, Form, Grid, Segment } from 'semantic-ui-react';
 import axios from 'axios';
@@ -35,6 +36,29 @@ const ButtonExampleLabeledBasic = ({
     </Button>
   </div>
 );
+
+function counter(state = 0, action) {
+  switch (action.type) {
+    case 'INC':
+      return state + 1;
+    case 'DEC':
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
+// 创建redux store 来存放应用的状态
+// API 是{ subscribe,dispatch,getState}
+let store = createStore(counter);
+
+// 可以手动订阅更新，也可以时间绑定到视图层
+store.subscribe(() => console.log(store.getState()));
+
+// 改变内部state唯一方式是dispatch一个action
+
+store.dispatch({ type: 'INC' }); // +1
+store.dispatch({ type: 'DEC' }); //-1
 
 function Clo(time) {
   return (
@@ -83,6 +107,7 @@ class Home extends Component {
   componentDidMount() {
     this.getDate();
     clock();
+    console.log(666)
   }
 
   async getDate() {
@@ -124,6 +149,13 @@ class Home extends Component {
       status: !this.state.status,
       curColor: this.state.curColor === 'red' ? 'blue' : 'red'
     });
+    store.dispatch({ type: 'INC' }); // +1
+    if (store.getState() === 10) {
+      document.body.style.background = 'red';
+    }
+    if (store.getState() > 12) {
+      document.body.style.background = '#ffffff';
+    }
   };
 
   render() {
