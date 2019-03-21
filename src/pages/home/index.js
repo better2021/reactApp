@@ -107,7 +107,7 @@ class Home extends Component {
   componentDidMount() {
     this.getDate();
     clock();
-    console.log(666)
+    console.log(666);
   }
 
   async getDate() {
@@ -150,6 +150,7 @@ class Home extends Component {
       curColor: this.state.curColor === 'red' ? 'blue' : 'red'
     });
     store.dispatch({ type: 'INC' }); // +1
+    console.log(store, '333');
     if (store.getState() === 10) {
       document.body.style.background = 'red';
     }

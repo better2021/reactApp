@@ -15,6 +15,7 @@ const Home = lazy(() => import('./pages/home'));
 const About = lazy(() => import('./pages/about'));
 const Video = lazy(() => import('./pages/video'));
 const Music = lazy(() => import('./pages/music'));
+const Test = lazy(() => import('./pages/test'));
 const NotFind = lazy(() => import('./component/notFind'));
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
               <Route path="/about" component={About} />
               <Route path="/video" component={Video} />
               <Route path="/music" component={Music} />
+              <Route path="/test" component={Test}/>
               <Redirect to="/notFind" component={NotFind} />
               {/* 没有找到路由跳到404页面 */}
             </Switch>
