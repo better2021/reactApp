@@ -10,6 +10,10 @@ export default class index extends Component {
     }
   }
 
+  componentDidMount(){
+    console.log('%c dom已加载完成✈❤','color:pink;font-size:30px;font-weight:600;text-shadow:1px 1px 3px #dddddd')
+  }
+
   changeInput = (event)=>{
     // console.log(event.target.value)
     this.setState({
