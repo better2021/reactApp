@@ -253,23 +253,10 @@ class Music extends Component {
     }
   };
 
-  render() {
-    return (
-      <div className={styles.musicList}>
-        {this.state.loading && (
-          <div className={styles.loadingBox}>
-            <Spinner name="line-scale" color="red" />
-          </div>
-        )}
-        <div className={styles.searchBox}>
-          <InputExampleIconElement
-            text={this.state.text}
-            change={this.handleChange}
-            search={this.handleSearch}
-          />
-          <HotList list={this.state.hotSearch} hotClick={this.playhotMusic} />
-        </div>
-        <ul>
+
+  renderList = () =>{
+    return(
+      <ul>
           {this.state.dataSorce.map((item, index) => {
             return (
               <li key={index} onClick={() => this.handleClick(item, index)}>
@@ -297,6 +284,28 @@ class Music extends Component {
             );
           })}
         </ul>
+    )
+  }
+
+  render() {
+    return (
+      <div className={styles.musicList}>
+        {this.state.loading && (
+          <div className={styles.loadingBox}>
+            <Spinner name="line-scale" color="red" />
+          </div>
+        )}
+        <div className={styles.searchBox}>
+          <InputExampleIconElement
+            text={this.state.text}
+            change={this.handleChange}
+            search={this.handleSearch}
+          />
+          <HotList list={this.state.hotSearch} hotClick={this.playhotMusic} />
+        </div>
+
+        {this.renderList()}
+        
         <div style={{ marginTop: '30px' }}>
           {this.state.musicUrl && (
             <div
