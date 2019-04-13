@@ -8,7 +8,9 @@ class MenuLsit extends Component {
     super(props)
     this.handleItemClick.bind(this)
   }
-  state = {}
+  state = {
+    title:['home','about','video','music','test','canvas'],
+  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name }, () => {
     console.log(this.state, name);
@@ -17,33 +19,24 @@ class MenuLsit extends Component {
   })
 
   render() {
-    const { activeItem } = this.state
+    const { activeItem ,title} = this.state
     return (
       <div>
         <Menu stackable>
           <Menu.Item>
             <img src='https://react.semantic-ui.com/logo.png' alt="react" />
           </Menu.Item>
-          <Menu.Item
-            name='home'
-            as="div"
-            active={activeItem === 'home'}
+          {title.map((item)=>{
+            return(
+              <Menu.Item
+            name={item}
+            active={activeItem === item}
+            key = {item}
             onClick={this.handleItemClick}
           >
           </Menu.Item>
-          <Menu.Item
-            as="div"
-            name='about'
-            active={activeItem === 'about'}
-            onClick={this.handleItemClick}
-          >
-          </Menu.Item>
-          <Menu.Item name='video' active={activeItem === 'video'} onClick={this.handleItemClick}>
-          </Menu.Item>
-          <Menu.Item name='music' active={activeItem === 'music'} onClick={this.handleItemClick}>
-          </Menu.Item>
-          <Menu.Item name='test' active={activeItem === 'test'} onClick={this.handleItemClick}>
-          </Menu.Item>
+            )
+          })}
         </Menu>
       </div>
     )

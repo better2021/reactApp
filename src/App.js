@@ -16,6 +16,7 @@ const About = lazy(() => import('./pages/about'));
 const Video = lazy(() => import('./pages/video'));
 const Music = lazy(() => import('./pages/music'));
 const Test = lazy(() => import('./pages/test'));
+const Canvas = lazy(() => import('./pages/cavans'));
 const NotFind = lazy(() => import('./component/notFind'));
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
               <Route path="/video" component={Video} />
               <Route path="/music" component={Music} />
               <Route path="/test" component={Test}/>
+              <Route path="/canvas" component={Canvas}/>
               <Redirect to="/notFind" component={NotFind} />
               {/* 没有找到路由跳到404页面 */}
             </Switch>

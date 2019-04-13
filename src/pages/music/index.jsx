@@ -305,7 +305,7 @@ class Music extends Component {
         </div>
 
         {this.renderList()}
-        
+
         <div style={{ marginTop: '30px' }}>
           {this.state.musicUrl && (
             <div
