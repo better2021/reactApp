@@ -56,24 +56,20 @@ const InputExampleIconElement = ({ text, change, search }) => (
 class Music extends Component {
   constructor(props) {
     super(props);
+    const hotMusic = localStorage.getItem('hotMusic');
+
     this.state = {
       currentIndex: -1,
       dataSorce: [],
       musicUrl: '',
       text: '',
-      hotSearch: [],
+      hotSearch: hotMusic ? JSON.parse(hotMusic):[],
       loading: false
     };
   }
 
   componentDidMount() {
     this.getMusicList(); //获取音乐列表
-    const hotMusic = localStorage.getItem('hotMusic');
-    if (hotMusic) {
-      this.setState({
-        hotSearch: JSON.parse(hotMusic)
-      });
-    }
     window.addEventListener('keydown', this.audioFn, false);
   }
 
@@ -149,6 +145,9 @@ class Music extends Component {
   playhotMusic = event => {
     //console.log(event.target.innerText)
     const title = event.target.innerText;
+    this.setState({
+      currentIndex: -1
+    });
     this.getMusicList(title);
   };
 

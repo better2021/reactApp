@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from './index.less'
 
-export default class index extends Component {
+class Test extends Component {
   constructor(props) {
     super(props)
   
@@ -10,7 +10,8 @@ export default class index extends Component {
        btns:[{class:'blur(10px)',name:'迷糊'},{class:'opacity(0.5)',name:'透明度'},
       {class:'grayscale(1)',name:'灰度'},{class:'sepia(0.5)',name:'褐色'},{class:'saturate(0.5)',name:'饱和度'},
       {class:'invert(60%)',name:'反转颜色'},{class:'brightness(1.5)',name:'亮度'},{class:'contrast(1.5)',name:'对比度'},
-      {class:'drop-shadow(10px 10px red)',name:'阴影'},{class:'hue-rotate(150deg)',name:'色相旋转'}],
+      {class:'drop-shadow(10px 10px red)',name:'阴影'},{class:'hue-rotate(150deg)',name:'色相旋转'},
+      {class:'',name:'复原'}],
       clazz:''  // 样式
     }
   }
@@ -52,3 +53,7 @@ export default class index extends Component {
     )
   }
 }
+
+export default Test
+
+

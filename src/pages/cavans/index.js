@@ -57,7 +57,7 @@ class Canvas extends Component {
     let jpgUrl = canvas.toDataURL('image/jpeg',0.8) // 第二个参数为图片的质量(0-1)
     let img = new Image()
     img.src= jpgUrl
-    document.body.appendChild(img)
+    document.getElementById('canvasBox').appendChild(img)
   }
 
   // 圆形
@@ -89,7 +89,7 @@ class Canvas extends Component {
     const dataUrl = canvas.toDataURL()
     let img = new Image()
     img.src = dataUrl
-    document.body.appendChild(img)
+    document.getElementById('canvasBox').appendChild(img)
   }
 
   // 创建图片平铺
@@ -114,7 +114,7 @@ class Canvas extends Component {
   render() {
     let {netType,netSpeed} = this.state
     return (
-      <div>
+      <div id='canvasBox'>
         <p style={{textIndent:'2em'}}>当前的网络类型为：<span style={{color:'#f00'}}>{netType}</span></p>
         <p style={{textIndent:'2em'}}>当前的网速为: <span style={{color:'#f00'}}>{netSpeed}Kb/s</span></p>
         <canvas width="300" height="200" ref={this.canvasRef}></canvas>

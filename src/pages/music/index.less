@@ -22,8 +22,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
         img{
           width: 100%;
+          transition: all 0.5s ease-in-out;
+        }
+        &:hover img{
+          transform: scale(1.1)
         }
         .musicLoading{
           position: absolute;
