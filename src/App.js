@@ -1,23 +1,19 @@
-import React, { Component, Suspense, lazy } from 'react';
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
-import 'semantic-ui-css/semantic.min.css';
-import './libs/mouseEffect';
-import './App.css';
+import React, { Component, Suspense, lazy } from "react"
+import { HashRouter as Router, Route, Switch, Redirect } from "react-router-dom"
+import "semantic-ui-css/semantic.min.css"
+import "./libs/mouseEffect"
+import "./App.css"
 
 //按需加载组件（也称懒加载）
-const MenuLsit = lazy(() => import('./component/menu'));
-const Home = lazy(() => import('./pages/home'));
-const About = lazy(() => import('./pages/about'));
-const Video = lazy(() => import('./pages/video'));
-const Music = lazy(() => import('./pages/music'));
-const Test = lazy(() => import('./pages/test'));
-const Canvas = lazy(() => import('./pages/cavans'));
-const NotFind = lazy(() => import('./component/notFind'));
+const MenuLsit = lazy(() => import("./component/menu"))
+const Home = lazy(() => import("./pages/home"))
+const About = lazy(() => import("./pages/about"))
+const Video = lazy(() => import("./pages/video"))
+const Music = lazy(() => import("./pages/music"))
+const Test = lazy(() => import("./pages/test"))
+const Canvas = lazy(() => import("./pages/cavans"))
+const Study = lazy(() => import("./pages/study"))
+const NotFind = lazy(() => import("./component/notFind"))
 
 class App extends Component {
   //我们必须在等待加载时显示一些后备内容 - 例如加载指示符,这是使用Suspense 组件完成的。
@@ -32,16 +28,18 @@ class App extends Component {
               <Route path="/about" component={About} />
               <Route path="/video" component={Video} />
               <Route path="/music" component={Music} />
-              <Route path="/test" component={Test}/>
-              <Route path="/canvas" component={Canvas}/>
+              <Route path="/test" component={Test} />
+              <Route path="/canvas" component={Canvas} />
+              <Route path="/study" component={Study} />
+
               <Redirect to="/notFind" component={NotFind} />
               {/* 没有找到路由跳到404页面 */}
             </Switch>
           </Suspense>
         </div>
       </Router>
-    );
+    )
   }
 }
 
-export default App;
+export default App
