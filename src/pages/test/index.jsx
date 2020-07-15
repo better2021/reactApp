@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import 'braft-editor/dist/index.css'
+import BraftEditor from 'braft-editor'
 import styles from "./index.less"
 
 class Test extends Component {
@@ -20,7 +22,8 @@ class Test extends Component {
         { class: "hue-rotate(150deg)", name: "色相旋转" },
         { class: "", name: "复原" }
       ],
-      clazz: "" // 样式
+      clazz: "", // 样式
+      editorState: BraftEditor.createEditorState(null)
     }
   }
 
@@ -52,6 +55,9 @@ class Test extends Component {
     this.setState({
       clazz: item.class
     })
+
+    const {editorState} = this.state
+    console.log(editorState.toHTML())
   }
 
   /**
@@ -65,6 +71,10 @@ class Test extends Component {
     this.setState({
       value: val
     })
+  }
+
+  handleChange = (editorState) => {
+    this.setState({ editorState })
   }
 
   render() {
@@ -97,6 +107,10 @@ class Test extends Component {
             )
           })}
         </div>
+        <div className={styles.editor}>
+          <BraftEditor value={this.state.editorState} onChange={this.handleChange}/>
+        </div>
+        
       </div>
     )
   }
